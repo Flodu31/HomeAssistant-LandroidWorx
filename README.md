@@ -1,5 +1,7 @@
 # HomeAssistant-LandroidWorx
-Integration for Mower Landroid Worx
+Here is a small description to do the integration between your home assistant, and your Mower Landroid Worx, to have all information in a dashboard:
+
+![ha-mower-landroid-worx](https://user-images.githubusercontent.com/15648175/230397310-4247974b-c4e5-48c2-aa1d-8dbefe47d729.jpg)
 
 ## Configuration
 Edit the file **/config/sensor.yaml** and add the following code, by replacing the username, password and serial number with your own:
