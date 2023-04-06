@@ -171,7 +171,7 @@ Create a new manual card and use the following code:
 
 ```yaml
 
-title: FALA Mower Status
+title: FALA Mower
 header:
   type: picture
   image: /local/images/landroid-worx.jpg
