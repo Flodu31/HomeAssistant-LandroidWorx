@@ -24,7 +24,7 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
       - battery_charge_cycles
       - last_status
       - dat
-
+  
   - platform: template
     sensors:
       landroid_blade_work_time:
@@ -76,14 +76,93 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
         icon_template: mdi:wifi
         value_template: "{{ (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['rsi']) }}"
       landroid_status:
+        # https://github.com/nibi79/worxlandroid/blob/master/src/main/java/org/openhab/binding/worxlandroid/internal/codes/WorxLandroidStatusCodes.java
         friendly_name: Status
         icon_template: mdi:information-outline
         value_template: >-
-            {% if (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['rain']['s'] == 0) %}
-              Ready
-            {% else %}
-              Rain Delay
+            {% if (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == -1) %}
+              UNKNOWN
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 0) %}
+              IDLE
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 1) %}
+              Home
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 2) %}
+              Start sequence
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 3) %}
+              Leaving home
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 4) %}
+              Follow wire
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 5) %}
+              Searching home
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 6) %}
+              Searching wire
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 7) %}
+              Mowing
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 8) %}
+              Lifted
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 9) %}
+              Trapped
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 10) %}
+              Blade blocked
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 11) %}
+              Debug
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 12) %}
+              Remote control
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 30) %}
+              Going home
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 31) %}
+              Zone training
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 32) %}
+              Border cut
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 33) %}
+              Border cut
+            {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['ls'] == 34) %}
+              Pause
             {% endif %}
+      landroid_error:
+        # https://github.com/nibi79/worxlandroid/blob/master/src/main/java/org/openhab/binding/worxlandroid/internal/codes/WorxLandroidErrorCodes.java
+        friendly_name: Error
+        icon_template: mdi:information-outline
+        value_template: >-
+          {% if (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == -1) %}
+            UNKNOWN
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 0) %}
+            No error!
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 1) %}
+            Trapped
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 2) %}
+            Lifted
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 3) %}
+            Wire missing
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 4) %}
+            Wire missing
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 5) %}
+            Raining
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 6) %}
+            Close door to mow
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 7) %}
+            Close door to go home
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 8) %}
+            Blade motor blocked
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 9) %}
+            Wheel motor blocked
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 10) %}
+            Trapped timeout
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 11) %}
+            Upside down
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 12) %}
+            Battery low
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 13) %}
+            Reverse wire
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 14) %}
+            Charge error
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 15) %}
+            Timeout finding home
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 16) %}
+            Mower locked
+          {% elif (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['le'] == 16) %}
+            Battery over temperature
+          {% endif %}
 
   ```
 Create a new manual card and use the following code:
