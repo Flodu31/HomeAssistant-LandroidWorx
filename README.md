@@ -3,6 +3,8 @@ Here is a small description to do the integration between your home assistant, a
 
 ![image](https://user-images.githubusercontent.com/15648175/230559009-7106a0fd-0483-47f1-b3fc-cc6aa7aab0ac.png)
 
+Thanks @DeXter3306 for the help :)
+
 ## Configuration
 Edit the file **/config/sensor.yaml** and add the following code, by replacing the username, password and serial number with your own:
 
@@ -32,7 +34,6 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
     sensors:
       landroid_blade_work_time:
         friendly_name: Blade Work Time
-        unit_of_measurement: 'h'
         icon_template: mdi:robot-mower-outline
         value_template: >-
           {% set t = state_attr("sensor.landroid_rest", "blade_work_time") | int(0) %}
@@ -43,7 +44,6 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
           {% endif %}
       landroid_mower_work_time:
         friendly_name: Mower Total Time
-        unit_of_measurement: 'h'
         icon_template: mdi:robot-mower-outline
         value_template: >-
           {% set t = state_attr("sensor.landroid_rest", "mower_work_time") | int(0) %}
