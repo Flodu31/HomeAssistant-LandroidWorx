@@ -3,8 +3,6 @@ Here is a small description to do the integration between your home assistant, a
 
 ![image](https://user-images.githubusercontent.com/15648175/230559009-7106a0fd-0483-47f1-b3fc-cc6aa7aab0ac.png)
 
-Thanks @DeXter3306 for the help :)
-
 ## Configuration
 Edit the file **/config/sensor.yaml** and add the following code, by replacing the username, password and serial number with your own:
 
