@@ -193,8 +193,8 @@ state_color: false
 type: entities
 entities:
   - entity: sensor.landroid_status
-    name: Status
   - entity: sensor.landroid_error
+  - entity: sensor.landroid_rain_delay
   - entity: sensor.landroid_battery
   - entity: sensor.landroid_distance_covered
   - entity: sensor.landroid_mower_work_time
