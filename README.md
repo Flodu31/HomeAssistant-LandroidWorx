@@ -17,6 +17,7 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
   - platform: command_line
     name: landroid_rest
     scan_interval: 60 # every 1 minute
+    value_template: '1'  # dummy value, not used; avoids the "State max length is 255 characters" error
     command: 'curl -X GET -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $(cat /config/.landroidToken)" https://api.worxlandroid.com/api/v2/product-items/YourSerialNumber?status=1'
     json_attributes:
       - blade_work_time
