@@ -77,6 +77,15 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
         unit_of_measurement: 'dBm'
         icon_template: mdi:wifi
         value_template: "{{ (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['rsi']) }}"
+      landroid_rain_delay:
+        friendly_name: Rain Delay
+        icon_template: mdi:weather-rainy
+        value_template: >-
+            {% if (state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['rain']['s'] == 1) %}
+              {{ state_attr('sensor.landroid_rest', 'last_status')['payload']['dat']['rain']['cnt'] }} min
+            {% else %}
+              N/A
+            {% endif %}
       landroid_status:
         # https://github.com/nibi79/worxlandroid/blob/master/src/main/java/org/openhab/binding/worxlandroid/internal/codes/WorxLandroidStatusCodes.java
         friendly_name: Status
