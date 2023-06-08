@@ -4,7 +4,7 @@ Here is a small description to do the integration between your home assistant, a
 ![image](https://user-images.githubusercontent.com/15648175/230577605-2d7adc00-b85e-4696-85fc-7d6b2e9c89d2.png)
 
 ## Configuration
-Edit the file **/config/sensor.yaml** and add the following code, by replacing the username, password and serial number with your own:
+Edit the file **/config/command_line.yaml** and add the following code, by replacing the username, password and serial number with your own:
 
 ```yaml
 
@@ -27,7 +27,13 @@ Edit the file **/config/sensor.yaml** and add the following code, by replacing t
       - battery_charge_cycles
       - last_status
       - dat
+  ```
   
+Edit the file **/config/sensor.yaml** and add the following code:
+
+```yaml
+
+# Landroid Worx
   - platform: template
     sensors:
       landroid_blade_work_time:
