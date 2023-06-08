@@ -9,24 +9,24 @@ Edit the file **/config/command_line.yaml** and add the following code, by repla
 ```yaml
 
 # Landroid Worx
-  - platform: command_line
-    name: rest_token
-    scan_interval: 3600 # every 1 hour
-    command: 'json=$(curl --location --request POST ''https://id.eu.worx.com/oauth/token'' --header ''Content-Type: application/x-www-form-urlencoded'' --data-urlencode ''client_id=150da4d2-bb44-433b-9429-3773adc70a2a'' --data-urlencode ''scope=*'' --data-urlencode ''client_secret=nCH3A0WvMYn66vGorjSrnGZ2YtjQWDiCvjg7jNxK'' --data-urlencode ''grant_type=password'' --data-urlencode ''username=YourUsername'' --data-urlencode ''password=YourPassword'' | jq -r ''.access_token'') && echo $json > /config/.landroidToken'
+  - sensor:
+      name: rest_token
+      scan_interval: 3600 # every 1 hour
+      command: 'json=$(curl --location --request POST ''https://id.eu.worx.com/oauth/token'' --header ''Content-Type: application/x-www-form-urlencoded'' --data-urlencode ''client_id=150da4d2-bb44-433b-9429-3773adc70a2a'' --data-urlencode ''scope=*'' --data-urlencode ''client_secret=nCH3A0WvMYn66vGorjSrnGZ2YtjQWDiCvjg7jNxK'' --data-urlencode ''grant_type=password'' --data-urlencode ''username=YourUserName'' --data-urlencode ''password=YourPassword'' | jq -r ''.access_token'') && echo $json > /config/.landroidToken'
     
-  - platform: command_line
-    name: landroid_rest
-    scan_interval: 60 # every 1 minute
-    value_template: '1'  # dummy value, not used; avoids the "State max length is 255 characters" error
-    command: 'curl -X GET -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $(cat /config/.landroidToken)" https://api.worxlandroid.com/api/v2/product-items/YourSerialNumber?status=1'
-    json_attributes:
-      - blade_work_time
-      - mower_work_time
-      - firmware_version
-      - distance_covered
-      - battery_charge_cycles
-      - last_status
-      - dat
+  - sensor:
+      name: landroid_rest
+      scan_interval: 60 # every 1 minute
+      command: 'curl -X GET -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer $(cat /config/.landroidToken)" https://api.worxlandroid.com/api/v2/product-items/YourSerialNumber?status=1'
+      json_attributes:
+        - blade_work_time
+        - mower_work_time
+        - firmware_version
+        - distance_covered
+        - battery_charge_cycles
+        - last_status
+        - dat
+        - name
   ```
   
 Edit the file **/config/sensor.yaml** and add the following code:
