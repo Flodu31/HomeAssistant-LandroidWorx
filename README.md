@@ -12,7 +12,7 @@ Edit the file **/config/command_line.yaml** and add the following code, by repla
   - sensor:
       name: rest_token
       scan_interval: 3600 # every 1 hour
-      command: 'json=$(curl --location --request POST ''https://id.eu.worx.com/oauth/token'' --header ''Content-Type: application/x-www-form-urlencoded'' --data-urlencode ''client_id=150da4d2-bb44-433b-9429-3773adc70a2a'' --data-urlencode ''scope=*'' --data-urlencode ''client_secret=nCH3A0WvMYn66vGorjSrnGZ2YtjQWDiCvjg7jNxK'' --data-urlencode ''grant_type=password'' --data-urlencode ''username=YourUserName'' --data-urlencode ''password=YourPassword'' | jq -r ''.access_token'') && echo $json > /config/.landroidToken'
+      command: 'json=$(curl --location --request POST ''https://id.worx.com/oauth/token'' --header ''Content-Type: application/x-www-form-urlencoded'' --data-urlencode ''client_id=150da4d2-bb44-433b-9429-3773adc70a2a'' --data-urlencode ''scope=*'' --data-urlencode ''client_secret=nCH3A0WvMYn66vGorjSrnGZ2YtjQWDiCvjg7jNxK'' --data-urlencode ''grant_type=password'' --data-urlencode ''username=YourUserName'' --data-urlencode ''password=YourPassword'' | jq -r ''.access_token'') && echo $json > /config/.landroidToken'
     
   - sensor:
       name: landroid_rest
